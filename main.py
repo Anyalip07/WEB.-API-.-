@@ -52,6 +52,8 @@ class ShowGeo(QWidget):
     def closeEvent(self, event):
         os.remove(self.map_file)
 
+def q():
+    ...
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
