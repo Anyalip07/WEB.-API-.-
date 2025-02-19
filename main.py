@@ -54,6 +54,7 @@ class ShowGeo(QWidget):
         os.remove(self.map_file)
 
     def keyPressEvent(self, event):
+        k = 0.001
         if event.key() == Qt.Key.Key_PageUp:
             self.z += 1
             self.z = min(self.z, 21)
@@ -61,6 +62,22 @@ class ShowGeo(QWidget):
         if event.key() == Qt.Key.Key_PageDown:
             self.z -= 1
             self.z = max(self.z, 0)
+            self.show_image()
+        if event.key() == Qt.Key.Key_Left:
+            if -180 <= self.ll[0] - k <= 180:
+                self.ll[0] -= k
+            self.show_image()
+        if event.key() == Qt.Key.Key_Right:
+            if -180 <= self.ll[0] + k <= 180:
+                self.ll[0] += k
+            self.show_image()
+        if event.key() == Qt.Key.Key_Up:
+            if -90 <= self.ll[1] + k <= 90:
+                self.ll[1] += k
+            self.show_image()
+        if event.key() == Qt.Key.Key_Down:
+            if -90 <= self.ll[1] - k <= 90:
+                self.ll[1] -= k
             self.show_image()
 
 
